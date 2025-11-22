@@ -12,7 +12,7 @@
 //             }
 
 //             // Exemplo: destinos populares podem vir de um banco ou arquivo
-//             const allDestinations = await this.destinationService.fetchPopularDestinations();
+//             const allDestinations = await this.destinationService.fetchPopularDestinationsNearby();
 
 //             const nearbyDestinations = await this.destinationService.fetchPopularDestinationsNearby(
 //                 Number(lat),
