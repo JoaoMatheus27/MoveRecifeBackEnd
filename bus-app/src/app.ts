@@ -1,6 +1,7 @@
 // ...existing code...
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import { setAuthRoutes } from './routes/authRoutes';
 // import { setDestinationRoutes } from './routes/destinationRoutes';
@@ -14,6 +15,9 @@ const PORT = Number(process.env.PORT || 3001);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// Habilita CORS para todas as origens (permitir qualquer cliente)
+app.use(cors());
+app.options('*', cors());
 
 
 setAuthRoutes(app);
