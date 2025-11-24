@@ -1,7 +1,7 @@
 // ...existing code...
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
 import UserModel from '../models/userModel';
 
@@ -30,10 +30,11 @@ class AuthController {
                 return res.status(500).json({ message: 'Server configuration error.' });
             }
 
+            const secretKey: Secret = secret as Secret;
             const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
             const token = jwt.sign(
                 { id: user._id, email: user.email, name: user.name },
-                secret,
+                secretKey,
                 { expiresIn }
             );
 
@@ -67,10 +68,11 @@ class AuthController {
                 return res.status(500).json({ message: 'Server configuration error.' });
             }
 
+            const secretKey: Secret = secret as Secret;
             const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
             const token = jwt.sign(
                 { id: user._id, email: user.email, name: user.name },
-                secret,
+                secretKey,
                 { expiresIn }
             );
 
@@ -124,10 +126,11 @@ class AuthController {
                 return res.status(500).json({ message: 'Server configuration error.' });
             }
 
+            const secretKey: Secret = secret as Secret;
             const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
             const jwtToken = jwt.sign(
                 { id: user._id, email: user.email, name: user.name },
-                secret,
+                secretKey,
                 { expiresIn }
             );
 
