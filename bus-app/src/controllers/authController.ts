@@ -30,10 +30,11 @@ class AuthController {
                 return res.status(500).json({ message: 'Server configuration error.' });
             }
 
+            const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
             const token = jwt.sign(
                 { id: user._id, email: user.email, name: user.name },
                 secret,
-                { expiresIn: '1d' }
+                { expiresIn }
             );
 
             return res.status(201).json({ token, user: { id: user._id, email: user.email, name: user.name } });
@@ -66,10 +67,11 @@ class AuthController {
                 return res.status(500).json({ message: 'Server configuration error.' });
             }
 
+            const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
             const token = jwt.sign(
                 { id: user._id, email: user.email, name: user.name },
                 secret,
-                { expiresIn: '1d' }
+                { expiresIn }
             );
 
             return res.status(200).json({ token, user: { id: user._id, email: user.email, name: user.name } });
@@ -122,10 +124,11 @@ class AuthController {
                 return res.status(500).json({ message: 'Server configuration error.' });
             }
 
+            const expiresIn = process.env.JWT_EXPIRES_IN || '1d';
             const jwtToken = jwt.sign(
                 { id: user._id, email: user.email, name: user.name },
                 secret,
-                { expiresIn: '1d' }
+                { expiresIn }
             );
 
             return res.status(200).json({ token: jwtToken, user: { id: user._id, email: user.email, name: user.name } });
